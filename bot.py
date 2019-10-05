@@ -3,6 +3,7 @@ import os
 import random
 import time
 import asyncio
+import wow_audio
 
 import discord
 from dotenv import load_dotenv
@@ -43,6 +44,7 @@ async def hello(ctx):
     name='wow',
     description='wow',
     pass_context=True,
+    help='wow'
 )
 async def wow(context):
     # grab the user who sent the command
@@ -54,7 +56,35 @@ async def wow(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await user.voice.channel.connect()
-        vc.play(discord.FFmpegPCMAudio('Wow Owen Wilson Sound Effect (download).mp4'), after=lambda: print('done'))
+        print(random.choice(wow_audio.wow_list))
+        vc.play(discord.FFmpegPCMAudio(random.choice(wow_audio.wow_list)), after=lambda: print('done'))
+        vc.is_playing()
+        while vc.is_playing():
+            await asyncio.sleep(1)
+        # disconnect after the player has finished
+        vc.stop()
+        await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
+
+
+@bot.command(
+    name='scubaba',
+    description='scubaba',
+    pass_context=True,
+    help='scubaba'
+)
+async def scubaba(context):
+    # grab the user who sent the command
+    user = context.message.author
+    voice_channel = user.voice.channel
+    channel = None
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await user.voice.channel.connect()
+        vc.play(discord.FFmpegPCMAudio('owen/scubaba.mp3'), after=lambda: print('done'))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
@@ -72,5 +102,3 @@ async def on_member_join(member):
             await channel.send_message("Welcome to the server {}".format(member.mention))
 
 bot.run(TOKEN)
-
-client.loop.create_task(update_stats())
