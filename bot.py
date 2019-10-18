@@ -84,7 +84,7 @@ async def scubaba(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await user.voice.channel.connect()
-        vc.play(discord.FFmpegPCMAudio('owen/scubaba.mp3'), after=lambda: print('done'))
+        vc.play(discord.FFmpegPCMAudio(random.choice(wow_audio.scubaba)), after=lambda: print('done'))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
@@ -94,6 +94,33 @@ async def scubaba(context):
     else:
         await context.send('User is not in a channel.')
 
+
+@bot.command(
+    name='wowwow',
+    description='wowwow',
+    pass_context=True,
+    help='wow alot'
+)
+async def wowwow(context):
+    # grab the user who sent the command
+    user = context.message.author
+    voice_channel = user.voice.channel
+    channel = None
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await user.voice.channel.connect()
+        print(random.choice(wow_audio.wow_list))
+        vc.play(discord.FFmpegPCMAudio(wow_audio.big_wow[0]), after=lambda: print('done'))
+        vc.is_playing()
+        while vc.is_playing():
+            await asyncio.sleep(1)
+        # disconnect after the player has finished
+        vc.stop()
+        await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
 
 @bot.event
 async def on_member_join(member):
