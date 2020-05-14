@@ -19,10 +19,15 @@ joined = 0
 messages = 0
 
 client = discord.Client()
+commands_txt = ["wow", "scubaba", "99"]
 
-@bot.command(name'hello'):
-async def help(ctx):
-    
+
+@bot.command(name='commands')
+async def commands(ctx):
+    response = ""
+    for command in commands_txt:
+        response += '{} \n '.format(command)
+    await ctx.send(response)
 
 
 @bot.command(name='99', help='Responds with a random quote from Brooklyn 99')
@@ -45,15 +50,6 @@ async def hello(ctx):
     await ctx.channel.send("Hi")
 
 
-@bot.command(name='leave_channel')
-async def leave_channel(ctx):
-    user = ctx.message.author
-    voice_channel = user.voice.channel
-    print("Before disconnect")
-    vc = await ctx.voice_client.disconnect()
-    print("After disconnect")
-
-
 @bot.command(
     name='wow',
     description='wow',
@@ -62,28 +58,33 @@ async def leave_channel(ctx):
 )
 async def wow(context):
     # grab the user who sent the command
-    # print(random.choice(wow_audio.wow_list))
     user = context.author
     voice_channel = context.author.voice.channel
     # only play music if user is in a voice channel
     if voice_channel is not None:
-        # print(random.choice(wow_audio.wow_list))
         # grab user's voice channel
         # create StreamPlayer
-        print(random.choice(wow_audio.wow_list))
         vc = await voice_channel.connect()
-        print(random.choice(wow_audio.wow_list))
-        vc.play(discord.FFmpegPCMAudio(random.choice(wow_audio.wow_list)))
-        vc.is_playing()
-        while vc.is_playing():
-            await asyncio.sleep(1)
-        # disconnect after the player has finished
-        vc.stop()
-        await vc.disconnect()
+        try:
+            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.wow_list)))
+            vc.is_playing()
+            while vc.is_playing():
+                await asyncio.sleep(1)
+            # disconnect after the player has finished
+            vc.stop()
+            await vc.disconnect()
+        except:
+            await vc.disconnect()
     else:
         await context.send('User is not in a channel.')
 
 
+@bot.command(
+    name='scubaba',
+    description='scubaba',
+    pass_context=True,
+    help='scubaba'
+)
 async def scubaba(context):
     # grab the user who sent the command
     user = context.message.author
@@ -94,7 +95,91 @@ async def scubaba(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await user.voice.channel.connect()
-        vc.play(discord.FFmpegPCMAudio(random.choice(wow_audio.scubaba)))
+        try:
+            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.scubaba)))
+            vc.is_playing()
+            while vc.is_playing():
+                await asyncio.sleep(1)
+            # disconnect after the player has finished
+            vc.stop()
+            await vc.disconnect()
+        except:
+            await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
+
+
+@bot.command(
+    name='hehe',
+    description='hehe',
+    pass_context=True,
+    help='hehe'
+)
+async def hehe(context):
+    # grab the user who sent the command
+    user = context.message.author
+    voice_channel = user.voice.channel
+    channel = None
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await user.voice.channel.connect()
+        try:
+            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.ole_wedel)))
+            vc.is_playing()
+            while vc.is_playing():
+                await asyncio.sleep(1)
+            # disconnect after the player has finished
+            vc.stop()
+            await vc.disconnect()
+        except:
+            await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
+
+
+@bot.command(
+    name='wowwow',
+    description='wowwow',
+    pass_context=True,
+    help='wowwow'
+)
+async def wowwow(context):
+    # grab the user who sent the command
+    user = context.author
+    voice_channel = context.author.voice.channel
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=wow_audio.big_wow[0]))
+        vc.is_playing()
+        while vc.is_playing():
+            await asyncio.sleep(1)
+        # disconnect after the player has finished
+        vc.stop()
+        await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
+
+@bot.command(
+    name='wololo',
+    description='wololo',
+    pass_context=True,
+    help='wololo'
+)
+async def wololo(context):
+    # grab the user who sent the command
+    user = context.author
+    voice_channel = context.author.voice.channel
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=wow_audio.big_wow[0]))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
