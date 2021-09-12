@@ -140,31 +140,6 @@ async def hehe(context):
 
 
 @bot.command(
-    name='wowwow',
-    description='wowwow',
-    pass_context=True,
-    help='wowwow'
-)
-async def wowwow(context):
-    # grab the user who sent the command
-    user = context.author
-    voice_channel = context.author.voice.channel
-    # only play music if user is in a voice channel
-    if voice_channel is not None:
-        # grab user's voice channel
-        # create StreamPlayer
-        vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(executable=exe, source=wow_audio.big_wow[0]))
-        vc.is_playing()
-        while vc.is_playing():
-            await asyncio.sleep(1)
-        # disconnect after the player has finished
-        vc.stop()
-        await vc.disconnect()
-    else:
-        await context.send('User is not in a channel.')
-
-@bot.command(
     name='wololo',
     description='wololo',
     pass_context=True,
