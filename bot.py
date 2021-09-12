@@ -20,7 +20,7 @@ messages = 0
 
 client = discord.Client()
 commands_txt = ["wow", "scubaba", "99"]
-
+exe = "/usr/bin/ffmpeg"
 
 @bot.command(name='commands')
 async def commands(ctx):
@@ -66,7 +66,7 @@ async def wow(context):
         # create StreamPlayer
         vc = await voice_channel.connect()
         try:
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.wow_list)))
+            vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.wow_list)))
             vc.is_playing()
             while vc.is_playing():
                 await asyncio.sleep(1)
@@ -96,7 +96,7 @@ async def scubaba(context):
         # create StreamPlayer
         vc = await user.voice.channel.connect()
         try:
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.scubaba)))
+            vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.scubaba)))
             vc.is_playing()
             while vc.is_playing():
                 await asyncio.sleep(1)
@@ -126,7 +126,7 @@ async def hehe(context):
         # create StreamPlayer
         vc = await user.voice.channel.connect()
         try:
-            vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.ole_wedel)))
+            vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.ole_wedel)))
             vc.is_playing()
             while vc.is_playing():
                 await asyncio.sleep(1)
@@ -154,7 +154,7 @@ async def wowwow(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=wow_audio.big_wow[0]))
+        vc.play(discord.FFmpegPCMAudio(executable=exe, source=wow_audio.big_wow[0]))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
@@ -179,7 +179,7 @@ async def wololo(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=wow_audio.big_wow[0]))
+        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.wololo)))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
