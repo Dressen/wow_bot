@@ -179,7 +179,7 @@ async def wololo(context):
         # grab user's voice channel
         # create StreamPlayer
         vc = await voice_channel.connect()
-        vc.play(discord.FFmpegPCMAudio(executable="C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe", source=random.choice(wow_audio.wololo)))
+        vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.wololo)))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)
