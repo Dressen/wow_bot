@@ -20,7 +20,8 @@ messages = 0
 
 client = discord.Client()
 commands_txt = ["wow", "scubaba", "99"]
-exe = "/usr/bin/ffmpeg"
+exe = "/usr/bin/ffmpeg"     # If you want to run the bot on a Linux machine
+# exe_windows = "C:/ffmpeg/ffmpeg-20200426-1128aa8-win64-static/bin/ffmpeg.exe" # If you want to run the bot on a Windows machine
 
 @bot.command(name='commands')
 async def commands(ctx):
@@ -155,6 +156,31 @@ async def wololo(context):
         # create StreamPlayer
         vc = await voice_channel.connect()
         vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.wololo)))
+        vc.is_playing()
+        while vc.is_playing():
+            await asyncio.sleep(1)
+        # disconnect after the player has finished
+        vc.stop()
+        await vc.disconnect()
+    else:
+        await context.send('User is not in a channel.')
+
+@bot.command(
+    name='sådan',
+    description='sådan',
+    pass_context=True,
+    help='sådan'
+)
+async def wololo(context):
+    # grab the user who sent the command
+    user = context.author
+    voice_channel = context.author.voice.channel
+    # only play music if user is in a voice channel
+    if voice_channel is not None:
+        # grab user's voice channel
+        # create StreamPlayer
+        vc = await voice_channel.connect()
+        vc.play(discord.FFmpegPCMAudio(executable=exe, source=random.choice(wow_audio.saadan)))
         vc.is_playing()
         while vc.is_playing():
             await asyncio.sleep(1)

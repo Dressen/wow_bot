@@ -17,3 +17,5 @@ scubaba = [r'{}/scubaba.mp3'.format(directory)]
 ole_wedel = [r'{}/ole_wedel.mp3'.format(directory)]
 
 wololo = [r'{}/Wololo Sound Effect.mp3'.format(directory)]
+
+saadan = [r'{}/sådan.mp3'.format(directory)]
